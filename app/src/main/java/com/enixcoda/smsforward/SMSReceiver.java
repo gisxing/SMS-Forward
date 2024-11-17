@@ -52,15 +52,7 @@ public class SMSReceiver extends BroadcastReceiver {
                     String forwardContent = rawMessageContent.replaceFirst(formatRegex, "$2");
                     Forwarder.sendSMS(forwardNumber, forwardContent);
                 }
-            } else {
-                // normal message, forwarded
-                if (enableSMS && !targetNumber.equals(""))
-                    Forwarder.forwardViaSMS(senderLabel, rawMessageContent, targetNumber);
-                if (enableTelegram && !targetTelegram.equals("") && !telegramToken.equals(""))
-                    Forwarder.forwardViaTelegram(senderLabel, rawMessageContent, targetTelegram, telegramToken);
-                if (enableWeb && !targetWeb.equals(""))
-                    Forwarder.forwardViaWeb(senderLabel, rawMessageContent, targetWeb);
-            }
+            } 
         }
     }
 
