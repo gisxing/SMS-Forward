@@ -13,6 +13,9 @@ import android.telephony.SmsMessage;
 
 import androidx.preference.PreferenceManager;
 
+import android.telephony.PhoneNumberUtils;
+
+
 public class SMSReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -44,7 +47,7 @@ public class SMSReceiver extends BroadcastReceiver {
             String senderLabel = (senderNames.isEmpty() ? "" : senderNames + " ") + "(" + senderNumber + ")";
             String rawMessageContent = currentMessage.getDisplayMessageBody();
 
-            if (senderNumber.equals(targetNumber)) {
+	    if (PhoneNumberUtils.areSamePhoneNumber(senderNumber, targetNumber, 'CN')) {
                 // reverse message
                 String formatRegex = "To (\\+?\\d+?):\\n((.|\\n)*)";
                 if (rawMessageContent.matches(formatRegex)) {
