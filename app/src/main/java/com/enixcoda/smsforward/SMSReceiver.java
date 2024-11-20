@@ -47,7 +47,7 @@ public class SMSReceiver extends BroadcastReceiver {
             String senderLabel = (senderNames.isEmpty() ? "" : senderNames + " ") + "(" + senderNumber + ")";
             String rawMessageContent = currentMessage.getDisplayMessageBody();
 
-	    if (PhoneNumberUtils.areSamePhoneNumber(senderNumber, targetNumber, 'CN')) {
+	    if (PhoneNumberUtils.areSamePhoneNumber(senderNumber, targetNumber, "CN")) {
                 // reverse message
                 String formatRegex = "To (\\+?\\d+?):\\n((.|\\n)*)";
                 if (rawMessageContent.matches(formatRegex)) {
